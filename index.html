@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Random Hearts</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <style>
+            body {
+                background-color: beige;
+                overflow: hidden; /* Ngăn cuộn khi trái tim xuất hiện ở biên */
+            }
+
+            .heart {
+                position: absolute;
+                font-size: 2rem;
+                color: red;
+                user-select: none; /* Ngăn chọn trái tim */
+                animation: fadeOut 3s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0.5);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            class="container mt-5 d-flex justify-content-center align-items-center">
+            <button class="btn btn-outline-secondary">Bấm vào đây bà xã</button>
+        </div>
+    </body>
+    <script>
+        const button = document.querySelector("body > div > button");
+        button.addEventListener("click", () => {
+            // Tạo hiệu ứng tạo trái tim liên tục
+            const intervalId = setInterval(() => {
+                // Tạo phần tử trái tim
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.textContent = " I ❤️ Tường Vi";
+
+                // Random vị trí
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                // Đặt vị trí
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                // Thêm trái tim vào body
+                document.body.appendChild(heart);
+            }, 100); // Tạo trái tim mới mỗi 300ms
+
+            // Tắt nút sau khi nhấn
+            button.disabled = true;
+           
+        });
+    </script>
+</html>
